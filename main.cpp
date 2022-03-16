@@ -13,7 +13,7 @@ Pretty-printing / Automatic Style Program
 
 int main(){
 //task A
-    std::cout << "\n============Task A: Remove Indentation============" << std::endl;
+    std::cout << "============Task A: Remove Indentation============" << std::endl;
     std::string text1 = "       int x = 1;  ";
     std::string output1 = removeLeadingSpaces(text1);
     std::cout << "Original: " << text1 << std::endl;
@@ -40,7 +40,7 @@ int main(){
     badfileog.close();
 
     std::ifstream badfilermv("bad-code.cpp");
-    std::cout << "\nIndendation Removed: " << "\n";
+    std::cout << "\nIndentation Removed: " << "\n";
 
     while (getline(badfilermv, perlinermv)){ 
         std::cout << removeLeadingSpaces(perlinermv) << std::endl; //prints out each input line without leading spaces
