@@ -28,6 +28,7 @@ int main(){
 
     //open the file
     std::ifstream badfileog("bad-code.cpp");
+    std::ofstream rmv_indentfile("removed-indentation.cpp"); //to write in the file removed-indentation.cpp aka fixed file
     std::string perline;
     std::string perlinermv;
 
@@ -43,8 +44,10 @@ int main(){
 
     while (getline(badfilermv, perlinermv)){ 
         std::cout << removeLeadingSpaces(perlinermv) << std::endl; //prints out each input line without leading spaces
+        rmv_indentfile << removeLeadingSpaces(perlinermv) << std::endl; //adds to the file removed-indentation.cpp
     }
     badfilermv.close();
+    rmv_indentfile.close();
     
 
 
@@ -55,7 +58,7 @@ int main(){
     std::ifstream badfileog2("bad-code2.cpp");
     std::string perlineog2;
 
-    while(getline(badfileog2, perlineog2)){ //print the file itself w/o removing leading spaces
+    while(getline(badfileog2, perlineog2)){ //print the original bad code file (just for before and after)
         std::cout << perlineog2 << std::endl;
     }
     badfileog2.close();
