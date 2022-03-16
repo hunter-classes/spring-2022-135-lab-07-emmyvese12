@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
 #include <cctype> //isspace that checks if a character is a whitespace
+#include <fstream>
 #include "unindent.h"
+#include "indent.h"
 
 //takes in one line of code and returns its copy without leading spaces/tabs
 std::string removeLeadingSpaces(std::string line){
@@ -31,3 +33,39 @@ std::string removeLeadingSpaces(std::string line){
 
 }
 
+
+void addProperIndent(std::string filename){
+    
+    std::ifstream badfile2(filename);
+    std::string perline2;
+
+    char openBrace = '{';
+    char closeBrace = '}';
+    int tabCount = 0;
+
+    while (getline(badfile2, perline2)){
+
+        // calculate the number of open and closed braces in a line
+        int openCount = countChar(perline2, openBrace);
+        int closeCount = countChar(perline2, closeBrace);
+
+        // because the closing curly braces are going to be indented one level further 
+        // than they should be, if closeCount is placed before the for loop
+        if (closeCount == 1){ //if there is a closed bracket, the indentation is lowered by 1
+            tabCount = tabCount - 1; 
+        }
+
+        for (int i = 0; i < tabCount; i++){
+            perline2 = "\t" + perline2; //add a tab for each tabCount followed by the rest of the line each time
+        }
+
+        if (openCount == 1){ // if there is a open bracket, the indentation is increased by 1
+            tabCount = tabCount + 1;
+        }
+        std::cout << perline2 << std::endl;
+    }
+     
+    badfile2.close();
+
+
+}
