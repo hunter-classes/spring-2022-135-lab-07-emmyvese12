@@ -33,10 +33,11 @@ std::string removeLeadingSpaces(std::string line){
 
 }
 
-
+//add the proper amount of tabs per line depending on the number of open and close braces
 void addProperIndent(std::string filename){
-    
+
     std::ifstream badfile2(filename);
+    std::ofstream with_indentfile("added-indentation.cpp"); //open a stream to write in the fixed file added-indentation.cpp with the correct indents from the badfile
     std::string perline2;
 
     char openBrace = '{';
@@ -62,9 +63,15 @@ void addProperIndent(std::string filename){
         if (openCount == 1){ // if there is a open bracket, the indentation is increased by 1
             tabCount = tabCount + 1;
         }
+
         std::cout << perline2 << std::endl;
+        with_indentfile << perline2 << std::endl; //add the same thing in the fixed file
+        
+        
     }
-     
+    
+    //close both files
+    with_indentfile.close();
     badfile2.close();
 
 
