@@ -8,6 +8,7 @@ Pretty-printing / Automatic Style Program
 #include <string>
 #include <fstream>
 #include "unindent.h"
+#include "indent.h"
 
 
 int main(){
@@ -25,15 +26,42 @@ int main(){
     std::cout << "Indentation Removed: " << output2 << std::endl;
     std::cout << "\n";
 
-    //file redirection --> make main --> ./main < bad-code.cpp
-    std::ifstream badfile("bad-code.cpp");
+    //open the file
+    std::ifstream badfileog("bad-code.cpp");
     std::string perline;
+    std::string perlinermv;
 
-    while (getline(badfile, perline)){ 
-        std::cout << removeLeadingSpaces(perline) << std::endl; //prints out each input line without leading spaces
+    std::cout << "Original: " << "\n";
+
+    while(getline(badfileog, perline)){ //print the file itself w/o removing leading spaces
+        std::cout << perline << std::endl;
     }
+    badfileog.close();
 
-    badfile.close();
+    std::ifstream badfilermv("bad-code.cpp");
+    std::cout << "\nIndendation Removed: " << "\n";
 
-    return 0;
+    while (getline(badfilermv, perlinermv)){ 
+        std::cout << removeLeadingSpaces(perlinermv) << std::endl; //prints out each input line without leading spaces
+    }
+    badfilermv.close();
+    
+
+
+//task B
+    std::cout << "\n============Task B: Adding Indentation============" << std::endl;
+    std::cout << "Before Indentation: " << std::endl;
+    //open the file
+    std::ifstream badfileog2("bad-code2.cpp");
+    std::string perlineog2;
+
+    while(getline(badfileog2, perlineog2)){ //print the file itself w/o removing leading spaces
+        std::cout << perlineog2 << std::endl;
+    }
+    badfileog2.close();
+
+    std::cout << "\n";
+    std::cout << "After Indentation: " << std::endl;
+    addProperIndent("bad-code2.cpp"); //function in unindent.cpp
+
 }
