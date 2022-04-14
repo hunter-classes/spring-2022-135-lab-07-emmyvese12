@@ -42,13 +42,13 @@ int main(){
     std::ifstream badfilermv("bad-code.cpp");
     std::cout << "\nIndentation Removed: " << "\n";
 
-    while (getline(badfilermv, perlinermv)){ 
+    while (getline(badfilermv, perlinermv)){
         std::cout << removeLeadingSpaces(perlinermv) << std::endl; //prints out each input line without leading spaces
         rmv_indentfile << removeLeadingSpaces(perlinermv) << std::endl; //adds to the file removed-indentation.cpp
     }
     badfilermv.close();
     rmv_indentfile.close();
-    
+
 
 
 //task B
@@ -67,4 +67,17 @@ int main(){
     std::cout << "After Indentation: " << std::endl;
     addProperIndent("bad-code2.cpp"); //function in unindent.cpp
 
+    //task B additional test
+    std::cout << "\n=========Task B: Additional Test============" << std::endl;
+    std::cout << "Before Indentation: " << std::endl;
+    //open the file
+    std::ifstream badfileog3("sloppy.cpp");
+    std::string perlineog3;
+    while(getline(badfileog3, perlineog3)){ //print the original bad code file (just for before and after)
+        std::cout << perlineog3 << std::endl;
+    }
+    badfileog3.close();
+    std::cout << "\n";
+    std::cout << "After Indentation: " << std::endl;
+    addProperIndent("sloppy.cpp"); //function in unindent.cpp
 }
